@@ -74,7 +74,7 @@ sudo a2dissite 000-default.conf
 
 Then enable the new one we just created:
 ```
-sudo a2ensite decoders.amnesty.org.conf
+sudo a2ensite kcsf-api.org.conf
 ```
 
 Restart the server for these changes to take effect:
