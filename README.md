@@ -3,8 +3,8 @@ Kcsf Data Visualization platform API
 
 ### Inslallation
 #### Environment
-- Ubuntu 16.04.1 x64
-- MongoDB 3.2.x
+- Ubuntu 14.04 LTS 64 bit
+- MongoDB 3.0.10
 - Apache Virtual Hosts (httpd)
 
 #### Initial Setup
