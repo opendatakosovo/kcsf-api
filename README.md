@@ -7,7 +7,6 @@ Kcsf Data Visualization platform API
 - MongoDB 3.2.x
 - Apache Virtual Hosts (httpd)
 
-### Installation
 #### Initial Setup
 Apache Virtual Host:
 ```
