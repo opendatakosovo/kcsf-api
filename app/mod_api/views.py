@@ -2,7 +2,7 @@ from flask import Blueprint, request, Response
 from bson import json_util
 from app import mongo
 
-mod_api = Blueprint('kcsf', __name__, url_prefix='/kcsf')
+mod_api = Blueprint('kcsf', __name__)
 
 
 @mod_api.route('/', methods=['GET'])
