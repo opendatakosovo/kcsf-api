@@ -88,8 +88,6 @@ def configure_logging(app):
 def init_modules(app):
 
     # Import blueprint modules
-    from app.mod_main.views import mod_main
     from app.mod_api.views import mod_api
 
-    app.register_blueprint(mod_main)
     app.register_blueprint(mod_api)
