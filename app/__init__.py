@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
 
     # Allow cross-domain access to API.
-    #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    cors = CORS(app, resources={r"*": {"origins": "*"}})
 
     # Load application configurations
     load_config(app)
