@@ -19,29 +19,36 @@ def comparison():
     json_obj = json_util.loads(json_string)
     q1_id = json_obj['q1_id']
     q2_id = json_obj['q2_id']
+    lang = json_obj['lang']
 
-    aggregation = get_aggregation(q1_id, q2_id)
+    aggregation = get_aggregation(q1_id, q2_id, lang)
     result = mongo.db.cso_survey.aggregate(aggregation)
     resp = Response(
         response=json_util.dumps(result['result']),
         mimetype='application/json')
     return resp
 
+def get_aggregation(q1, q2, lang):
+    array_questions = ["q7", "q22", "q77", "q109", "q128"]
 
-def get_aggregation(q1, q2):
-    unwind = {
-        "$unwind": "$q7.answer"
-    }
-    aggregation = build_aggregation_pipeline(q1, q2)
-    if q2 == "q7":
+    aggregation = build_aggregation_pipeline(q1, q2, lang)
+
+    if q2 in array_questions:
+        unwind = get_unwind(q2, lang)
         aggregation.insert(0, unwind)
-
+    if q1 in array_questions:
+        unwind = get_unwind(q1, lang)
+        aggregation.insert(0, unwind)
     return aggregation
 
+def get_unwind(question, lang):
+    return {
+        "$unwind": "$" + question + ".answer." + lang
+    }
 
-def build_aggregation_pipeline(q1, q2):
-    q1_answer = str(q1) + ".answer"
-    q2_answer = str(q2) + ".answer"
+def build_aggregation_pipeline(q1, q2, lang):
+    q1_answer = str(q1) + ".answer." + lang
+    q2_answer = str(q2) + ".answer." + lang
     match = {
         "$match": {
             q1_answer: {
