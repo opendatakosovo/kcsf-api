@@ -25,8 +25,8 @@ ID,sr,sq,en
 74,Koliko ste projekata realizovali u proteklih godinu dana?,Sa projekte keni zbatuar gjatë vitit të fundit?,How many projects have you implemented in the last year?
 75,Koja od sledećih kategorija bi najbolje opisala godišnji prihod vaše organizacije u 2015 godini?,Cila nga kategoritë e mëposhtme do të përshkruante më së miri të hyrat vjetore të organizatës suaj gjatë vitit 2015?,Which of the following categories would best describe the annual revenues of your organization during 2015?
 76,U poređenju sa prošlom godinom koji su prihodi i rashodi vaše organizacije u 2015 godini....,"Në krahasim me vitin e kaluar, të ardhurat dhe shpenzimet e organizatës suaj në vitin 2015....","Compared to last year, the revenues and expenses of your organization in 2015...."
-76.1,,,Revenues in 2015
-76.2,,,Expenses in 2015
+76.1,Prihodi u 2015 godini,Të ardhurat në vitin 2015,Revenues in 2015
+76.2,Rashodi u 2015 godini,Shpenzimet në vitin 2015,Expenses in 2015
 77,Koju ste vrstu finansijske pomoći primili u toku 2015 godine?,Çfarë lloji të përkrahjes financiare keni pranuar gjatë vitit 2015?,What type of financial support have you had during the year 2015?
 80,"80. U toku 2015. godine, koji je procenat finansijskih resursa vaše organizacije dobijen iz sledećih izvora?","Gjatë vitit 2015, çfarë përqindje e burimeve financiare të organizatës suaj kanë ardhur prej burimeve në vijim?","During 2015, what percentage of financial sources of your organization came from the following sources?"
 81,Da li je vaša organizacija primila strane fondove u toku prošle godine?,A ka marrë organizata juaj fonde të huaja gjatë vitit të fundit?,Has your organization received foreign funds during the last year?
@@ -50,6 +50,6 @@ ID,sr,sq,en
 129,"Uopšteno govoreći, vaši komentari su:","Në përgjithësi, komentet tuaja janë:","In general, your comments are:"
 135,Kakav je bio uticaj civilnog društva na Kosovu u sledećim oblastima tokom 2015. godine?,Cili ka qenë ndikimi i shoqërisë civile në Kosovë në fushat e mëposhtme gjatë vitit 2015?,What was the impact of civil society in Kosovo concerning the fields below in 2015?
 136,U kojoj oblasti mislite da je vaša organizacija imala najviše uticaja u toku 2015 godine?,Në cilën fushë mendoni se ka pasur organizata juaj më së tepërmi ndikim gjatë vitit 2015?,In which field you do believe your organizationhad its highest impact in 2015?
-136.1,,,What is your estimation regarding the impact of your organization on this field? 
+136.1,Kako ocenjujete uticaj vaše organizacije  u ovoj oblasti? ,Si e vlerësoni ndikimin e organizatës suaj në këtë fushë?,What is your estimation regarding the impact of your organization on this field? 
 138,"Po vašem mišljenju, opšta društvena, politička i ekonomska sredina na Kosovu :","Sipas mendimit tuaj, ambienti i përgjithshëm shoqëror, politik dhe ekonomik në Kosovë:","What is your estimation regarding the general social, politic and economic environment in Kosovo:"
 140,"Po vašem mišljenju, kakva je slika civilnog društva u javnosti i šire na Kosovu?","Sipas mendimit tuaj, çfarë është imazhi i shoqërisë civile në publikun e gjerë në Kosovë?",What is your opinion on the civil society image in the general public of Kosovo?

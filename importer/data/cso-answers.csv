@@ -52,21 +52,21 @@ ID,sr,sq,en
 14.2.,Fondacija (organizacija bez članstva),Fondacion (organizatë pa anëtarësi),Foundation (an organization without membership)
 15.1.,Da,Po,Yes
 15.2.,Ne,Jo,No
-18.1.,Skupština članova (pređite na pitanje 20),Kuvendi i anëtarëve (Kalo në pyetjen 20),Members Assembly
+18.1.,Skupština članova,Kuvendi i anëtarëve,Members Assembly
 18.2.,Upravni odbor,Bordi,Board
-18.3.,Direktor / direktorica organizacije (pređite na pitanje 20),Drejtori/drejtoresha e organizatës (Kalo në pyetjen 20),Director of the organization
+18.3.,Direktor / direktorica organizacije,Drejtori/drejtoresha e organizatës,Director of the organization
 18.4.,Ostalo,Tjetër,Other
-22.1.1.,,,Personal Income Tax
-22.2.1.,,,Pension contributions for employees
-22.3.1.,,,Rent/property tax
-22.4.1.,,,Corporate Income Tax/Profit Tax
-22.5.1.,,,Value Added Tax (VAT)
-22.6.1.,,,Health insurance for employees
-22.7.1.,,,Other
-23.1.,,,"Yes, we report regularly"
-23.2.,,,"No, we do not report regularly"
-23.3.,,,"No, we never report"
-23.99.,,,Refuse to answer
+22.1.1.,Porez na lični dohodak,Tatimin në të ardhura personale,Personal Income Tax
+22.2.1.,Penzioni doprinos zaposlenih ,Kontributin pensional të punëtorëve,Pension contributions for employees
+22.3.1.,Porez na iznajmljivanje / imovinu,Tatimin në qera/pronë,Rent/property tax
+22.4.1.,Porez na korporativni dohodak / porez na dobit ,Tatimin në të ardhura të korporatave/Tatimin në fitim,Corporate Income Tax/Profit Tax
+22.5.1.,Porez na dodatu vrednost (PDV) ,Tatimin në vlerën e shtuar (TVSH),Value Added Tax (VAT)
+22.6.1.,Zdravstveno osiguranje radnika,Sigurimin shëndetësor të punëtorëve,Health insurance for employees
+22.7.1.,Ostalo,Tjetër,Other
+23.1.,"Da, redovno izveštavamo ","Po, raportojmë rregullisht","Yes, we report regularly"
+23.2.,"Ne, ne  izveštavamo redovno ","Jo, nuk raportojmë rregullisht","No, we do not report regularly"
+23.3.,"Ne, nikada ne izveštavamo","Jo, nuk raportojmë kurrë","No, we never report"
+23.99.,Odbijam da odgovorim,Refuzoj të përgjigjem,Refuse to answer
 29.1.1.,"Da, i dostavlja dokument","Po, dhe tregon dokumentin","Yes, and shows the document"
 29.1.2.,"Da, ali ne dostavlja dokument","Po, por nuk tregon dokumentin","Yes, but does not show the document"
 29.1.3.,"Ne, organizacija nema ovaj dokument","Jo, organizata nuk e ka këtë dokument","No, organizations does not have this document"
@@ -89,7 +89,7 @@ ID,sr,sq,en
 36.2.,U proseku dve godine,Mesatarisht 2 vite,An average of 2 years
 36.3.,3-5 godina,3-5 vite,3 - 5 years
 36.4.,Duže od 5 godina,Më shumë se 5 vite,More than 5 years
-36.99.,,,Refuse to answer
+36.99.,Odbijam da odgovorim,Refuzoj të përgjigjem,Refuse to answer
 37.1.,Profesionalno vrlo pripremljeno za relevantnu oblast i rad,Shumë i përgatitur profesionalisht për fushën dhe punën përkatëse,Highly prepared professionally for the field and related work
 37.2.,Profesionalno prosečno pripremljeno za relevantnu oblast i rad,Mesatarisht i përgatitur profesionalisht për fushën dhe punën përkatëse,Averagely prepared professionally for the field and related work
 37.3.,Profesionalno nepripremljeno za relevantnu oblast i rad,I papërgatitur profesionalisht për fushën dhe punën përkatëse,Unprepared professionally for the field of related work
@@ -104,7 +104,7 @@ ID,sr,sq,en
 72.5.,Za period duži od 36 meseci,Për periudhë më të gjatë se 36 muaj,For a period longer than 36 months
 73.1.,Da,Po,Yes
 73.2.,Ne,Jo,No
-73.99.,,,Refuse to answer
+73.99.,Odbijam da odgovorim,Refuzoj të përgjigjem,Refuse to answer
 75.1.,"Manje 10,000 evra godišnje","Më pak se 10,000 EUR në vit","Less than € 10,000 per year"
 75.2.,"10,000 – 25,000 evra godišnje","10,000 – 25,000 EUR në vit","€ 10,000 - € 25,000 per year"
 75.3.,"25,000 – 50,000 evra godišnje","25,000 – 50,000EUR ne vit","€ 25,000 - € 50,000 per year"
