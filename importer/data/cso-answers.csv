@@ -64,7 +64,8 @@ ID,sr,sq,en
 22.6.1.,Zdravstveno osiguranje radnika,Sigurimin shëndetësor të punëtorëve,Health insurance for employees
 22.7.1.,Ostalo,Tjetër,Other
 23.1.,"Da, redovno izveštavamo ","Po, raportojmë rregullisht","Yes, we report regularly"
-23.2.,"Ne, ne  izveštavamo redovno ","Jo, nuk raportojmë rregullisht","No, we do not report regularly"
+23.2.,"Ne, ne  izveštavamo redovno ","Jo, nuk raportojmë rregullisht
+","No, we do not report regularly"
 23.3.,"Ne, nikada ne izveštavamo","Jo, nuk raportojmë kurrë","No, we never report"
 23.99.,Odbijam da odgovorim,Refuzoj të përgjigjem,Refuse to answer
 29.1.1.,"Da, i dostavlja dokument","Po, dhe tregon dokumentin","Yes, and shows the document"
@@ -118,11 +119,11 @@ ID,sr,sq,en
 76.1.1.,Povećali su se,Janë rritur,They grew
 76.1.2.,Nisu se promenili,Nuk kanë ndryshuar,Have not changed
 76.1.3.,Smanjili su se,Janë zvogëluar,Have reduced
-76.1.99.,Ne primenjuju se (organizacija je formirana u 2015 godini),Nuk aplikohet (organizata është hapur në vitin 2015),Does not apply (organization was opened in 2015)
+76.1.99.,,,
 76.2.1.,Povećali su se,Janë rritur,They grew
 76.2.2.,Nisu se promenili,Nuk kanë ndryshuar,Have not changed
 76.2.3.,Smanjili su se,Janë zvogëluar,Have reduced
-76.2.99.,Ne primenjuju se (organizacija je formirana u 2015 godini),Nuk aplikohet (organizata është hapur në vitin 2015),Does not apply (organization was opened in 2015)
+76.2.99.,,,
 77.1.1.,Grantove za projekte,Grante për projekte,Grants for projects
 77.2.1.,Institucionalne grantove,Grante institucionale,Institutional grants
 77.3.1.,Ugovor za pružanje usluga,Kontrata për shërbime,Service contracts

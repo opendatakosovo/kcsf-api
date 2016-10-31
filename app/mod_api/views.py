@@ -28,6 +28,7 @@ def comparison():
         mimetype='application/json')
     return resp
 
+
 def get_aggregation(q1, q2, lang):
     array_questions = ["q7", "q22", "q77", "q109", "q128"]
 
@@ -41,10 +42,12 @@ def get_aggregation(q1, q2, lang):
         aggregation.insert(0, unwind)
     return aggregation
 
+
 def get_unwind(question, lang):
     return {
         "$unwind": "$" + question + ".answer." + lang
     }
+
 
 def build_aggregation_pipeline(q1, q2, lang):
     q1_answer = str(q1) + ".answer." + lang

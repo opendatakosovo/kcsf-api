@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+import pprint
+
 from pymongo import MongoClient
 from progressbar import ProgressBar, Percentage, ETA, Counter, Bar
 import csv
-
 
 mongo = MongoClient()
 
@@ -27,7 +28,7 @@ class DataImporter(object):
             counter = 0
             reader_list = list(reader)
             widgets = ['        Progress: ', Percentage(), ' ', Bar(marker='#', left='[', right=']'),
-                   ' ', ETA(), " - ", Counter(), " Documents    "]
+                       ' ', ETA(), " - ", Counter(), " Documents    "]
             pbar = ProgressBar(widgets=widgets)
             for row in pbar(reader_list):
                 id = row[0]
@@ -370,12 +371,18 @@ class DataImporter(object):
             question_json['answer'] = {}
             if len(entry) > 5:
                 question_json['answer']['sq'] = entry
+                question_json['answer']['sr'] = entry
+                question_json['answer']['en'] = entry
             else:
                 question_json['answer']['en'] = answers[question + "." + entry + "."]['en']
                 question_json['answer']['sq'] = answers[question + "." + entry + "."]['sq']
                 question_json['answer']['sr'] = answers[question + "." + entry + "."]['sr']
         else:
-            question_json["answer"] = ""
+            question_json["answer"] = {
+                "en": "",
+                "sq": "",
+                "sr": ""
+            }
         return question_json
 
     def get_qa(self, file_path):
