@@ -1,4 +1,4 @@
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, render_template
 from bson import json_util
 from app import mongo
 
@@ -10,12 +10,13 @@ def index():
     ''' Renders the API index page.
     :return:
     '''
-    return "Welcome to the KCSF API."
+    return render_template('index.html')
 
 
 @mod_api.route('/comparison', methods=['POST'])
 def comparison():
     json_string = request.data
+
     json_obj = json_util.loads(json_string)
     q1_id = json_obj['q1_id']
     q2_id = json_obj['q2_id']

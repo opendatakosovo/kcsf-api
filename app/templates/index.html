@@ -1,0 +1,156 @@
+<html>
+
+  <head>
+    <title>KCSF API Documentation</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>API for KCSF Questionnaire Answers</h1>
+
+      <p>An API to access data used by the <a target="_blank" href="http://kcsfoundation.org/index2016/">KCSF Visualizer Index 2016</a>.</p>
+
+      <hr/>
+
+      <h3>Description:</h3>
+      <p>From requests in this API, you will get comparison info reponse(JSON) according to the questions(q1_id, q2_id) and language(lang) that you will pass in this API request.</p>
+
+      <hr/>
+
+      <h3>Guide</h3>
+
+      <h4>URL:</h4>
+      <div class="well well-sm"><h4>/comparison</h4></div>
+
+      <h4>Method:</h4>
+      <div class="well well-sm"><h4>POST</h4></div>
+
+      <h4>Data Params:</h4>
+      <pre>
+        <code class="json language-json">
+          {
+          	"q1_id": [alphanumeric],
+          	"q2_id": [alphanumeric],
+          	"lang": [alphanumeric]
+          }
+        </code>
+      </pre>
+
+      <div class="alert alert-info">
+        <strong>Note!</strong> The values of q1_id and q2_id should be in this form "q14", the "q" is for question and 14 is sample number of question, please refer to this document to see all questions of this questionnaire <a href="https://opendatakosovo.github.io/kcsf-data-visualizer/static/download/questionnaires/Indeksi_Kosovar_i_Shoqerise_Civile_Pyetesori_Tetor_2016.pdf">Download questionnaire</a>. And the the values of "lang" can be "sq", "en" and "sr".
+      </div>
+
+      <div class="alert alert-danger">
+        <strong>Note!</strong> The API request must be sent as POST request with application/json type in body.
+      </div>
+
+      <hr/>
+
+      <h3>Success Sample Request</h3>
+
+      <h4>URL:</h4>
+      <div class="well well-sm"><h4>/comparison</h4></div>
+
+      <h4>Data Params Values:</h4>
+      <pre>
+        <code class="json language-json">
+          {
+            "q1_id": "q122",
+          	"q2_id": "q14",
+          	"lang": "en"
+          }
+        </code>
+      </pre>
+
+      <h4>Success Response</h4>
+      <pre>
+        <code class="json language-json">
+          [
+              {
+                  "count": 1,
+                  "type1": "Your request was denied without reasoning nor possibility to complain",
+                  "type2": "Association (membership-based organization)"
+              },
+              {
+                  "count": 3,
+                  "type1": "You received no answer",
+                  "type2": "Association (membership-based organization)"
+              },
+              {
+                  "count": 10,
+                  "type1": "You received data/information belatedly",
+                  "type2": "Association (membership-based organization)"
+              },
+              {
+                  "count": 9,
+                  "type1": "You received the data/information within the time limit prescribed (7 days)",
+                  "type2": "Association (membership-based organization)"
+              },
+              {
+                  "count": 3,
+                  "type1": "Your request was denied with reasoning and possibility to complain",
+                  "type2": "Association (membership-based organization)"
+              },
+              {
+                  "count": 1,
+                  "type1": "Other",
+                  "type2": "Foundation (an organization without membership)"
+              },
+              {
+                  "count": 2,
+                  "type1": "You received the data/information within the time limit prescribed (7 days)",
+                  "type2": "Foundation (an organization without membership)"
+              },
+              {
+                  "count": 1,
+                  "type1": "You received no answer",
+                  "type2": "Foundation (an organization without membership)"
+              }
+          ]
+        </code>
+      </pre>
+
+      <hr/>
+
+      <h3>Fail Sample Request</h3>
+
+      <h4>URL:</h4>
+      <div class="well well-sm"><h4>/comparison</h4></div>
+
+      <h4>Data Params Values:</h4>
+      <pre>
+        <code class="json language-json">
+          {
+          	"q1_id": "q12",
+          	"q2_id": "q14",
+          	"lang": "en"
+          }
+        </code>
+      </pre>
+
+      <h4>No Data Response</h4>
+      <pre>
+        <code class="json language-json">
+          []
+        </code>
+      </pre>
+
+      <div class="row">
+      <hr>
+        <div class="col-lg-12">
+          <div class="col-md-8">
+            <a target="_blank" href="http://opendatakosovo.org">Developed and Documented by ODK</a>
+          </div>
+          <div class="col-md-4">
+            <p class="muted pull-right">© 2017 <a target="_blank" href="http://opendatakosovo.org">Open Data Kosovo</a>. All rights reserved</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
+</html>
