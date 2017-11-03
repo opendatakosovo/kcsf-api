@@ -12,36 +12,63 @@
       * {
         font-family: 'Raleway', 'sans-serif';
       }
+      table {
+        background-color: #f5f5f5;
+        /*color: #fff;*/
+        border: #e0e0e0 1px solid;
+      }
+      table tbody tr {
+        background-color: #fff;
+      }
       .well-sm, pre {
-        background-color: #252525;
+        background-color: #292b36;
         color: #fff;
         border-radius: 7px;
-        padding: 5px 23px;
+        padding: 2px 23px;
+        border-color: white;
+      }
+      .well-sm h4, table {
+        font-size: 15px;
+      }
+      .subtitle {
+        font-weight: bold;
+        text-align: center;
+      }
+      .well-method h4 {
+        font-weight: bold;
+      }
+      ul.nav-tabs {
+        margin-bottom: 10px;
+      }
+      .api-1, .api-2, .api-3 {
+        margin-bottom: 30px;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>API for KCSF Questionnaire Answers</h1>
+      <div class="page-header">
+        <h1>API for KCSF Questionnaire Answers</h1>
+        <p>An API to access data used by the <a target="_blank" href="http://kcsfoundation.org/index2016/">KCSF Visualizer Index 2016</a>.</p>
+      </div>
 
-      <p>An API to access data used by the <a target="_blank" href="http://kcsfoundation.org/index2016/">KCSF Visualizer Index 2016</a>.</p>
-
-      <hr/>
-
-      <h3>Description:</h3>
+      <h3 class="subtitle">Description:</h3>
       <p>From requests in this API, you will get comparison info reponse(JSON) according to the questions(q1_id, q2_id) and language(lang) that you will pass in this API request.</p>
 
       <hr/>
 
-      <h3>Guide</h3>
+      <h3 class="subtitle">API Usage Guide</h3>
 
-      <h4>URL:</h4>
-      <div class="well well-sm"><h4>/comparison</h4></div>
+      <div style="padding: 0" class="col-md-1">
+        <h4>Method:</h4>
+        <div class="well well-sm well-method"><h4>POST</h4></div>
+      </div>
+      <div class="col-md-11" style="padding: 0">
+        <h4>URL:</h4>
+        <div class="well well-sm"><h4>/comparison</h4></div>
+      </div>
 
-      <h4>Method:</h4>
-      <div class="well well-sm"><h4>POST</h4></div>
-
-      <h4>Data Params:</h4>
+      <h4>Body Parameters:</h4>
       <pre>
         <code class="json language-json">
           {
@@ -62,12 +89,16 @@
 
       <hr/>
 
-      <h3>Success Sample Request</h3>
+      <h3 class="subtitle">Success Sample Request</h3>
 
-      <h4>URL:</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a>Request URL</a></li>
+      </ul>
       <div class="well well-sm"><h4>/comparison</h4></div>
 
-      <h4>Data Params Values:</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a>Body Parameters Values</a></li>
+      </ul>
       <pre>
         <code class="json language-json">
           {
@@ -78,7 +109,9 @@
         </code>
       </pre>
 
-      <h4>Success Response</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a>Success Response</a></li>
+      </ul>
       <pre>
         <code class="json language-json">
           [
@@ -128,12 +161,16 @@
 
       <hr/>
 
-      <h3>Fail Sample Request</h3>
+      <h3 class="subtitle">Fail Sample Request</h3>
 
-      <h4>URL:</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a>Request URL</a></li>
+      </ul>
       <div class="well well-sm"><h4>/comparison</h4></div>
 
-      <h4>Data Params Values:</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a>Body Parameters Values</a></li>
+      </ul>
       <pre>
         <code class="json language-json">
           {
@@ -144,7 +181,9 @@
         </code>
       </pre>
 
-      <h4>No Data Response</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a>Fail Response</a></li>
+      </ul>
       <pre>
         <code class="json language-json">
           []
