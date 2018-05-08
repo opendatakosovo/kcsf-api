@@ -10,7 +10,8 @@ node {
             bash install.sh'''
         }
         stage('Deploy') {
-            sh '''./jenkinscd/deploy.sh'''
+            sh '''sudo su
+            ./jenkinscd/deploy.sh'''
         }
   } catch (e) {
     // If there was an exception thrown, the build failed
