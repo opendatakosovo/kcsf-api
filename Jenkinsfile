@@ -6,6 +6,7 @@ node {
         notifyBuild('STARTED')
         stage('Build') {
             sh '''rm -rf venv
+            pip install virtualenv
             bash install.sh'''
         }
         stage('Deploy') {
