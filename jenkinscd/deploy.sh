@@ -5,6 +5,7 @@ ssh jenkins@46.101.135.45 <<EOF
  sudo su
  git pull
  rm -rf venv
+ bash install.sh
  service apache2 restart
  exit       
 EOF
