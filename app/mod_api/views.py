@@ -1,9 +1,10 @@
+import jwt, datetime
 from flask import Blueprint, request, Response, render_template
 from bson import json_util
-from app import mongo
+from app import mongo, bcrypt, secret_key
+from app.utils.auth import token_required
 
 mod_api = Blueprint('kcsf', __name__)
-
 
 @mod_api.route('/', methods=['GET'])
 def index():
@@ -12,10 +13,67 @@ def index():
     '''
     return render_template('index.html')
 
+@mod_api.route('/register', methods=['POST'])
+def register():
+    data = json_util.loads(request.data)
+
+    # Check if email is already used
+    if mongo.db.user.find({'email': data['email']}).count() > 0:
+        return Response(
+        response=json_util.dumps({'success': False, 'msg': 'Email is already used'}),
+        mimetype='application/json')
+
+    # Check if password is matched with confirm password
+    if data['password'] != data['confirmPassword']:
+        return Response(
+        response=json_util.dumps({'success': False, 'msg': 'Password and Confirm Password do not match!'}),
+        mimetype='application/json')
+
+    # Hashing password
+    hash_pwd = bcrypt.generate_password_hash(data['password'])
+
+    # Saving new user into db
+    mongo.db.user.insert({
+        'email': data['email'],
+        'password': hash_pwd
+    })
+
+    return Response(
+        response=json_util.dumps({'success': True, 'msg': 'User successfully saved!'}),
+        mimetype='application/json')
+
+@mod_api.route('/login', methods=['POST'])
+def authenticate():
+    data = json_util.loads(request.data)
+
+    # Finding user by username or email
+    user = mongo.db.user.find_one({'email': data['email']})
+
+    # If user not found
+    if not user:
+        return Response(
+        response=json_util.dumps({'success': False, 'msg': 'Invalid email!'}),
+        mimetype='application/json')
+
+    # Checking password
+    if bcrypt.check_password_hash(user['password'], data['password']):
+        # If user is active give the token
+        token = jwt.encode({'email': user['email'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=120)}, secret_key)
+
+        return Response(response=json_util.dumps({'success': True, 
+                                  'msg': 'Successfully login!', 
+                                  'token': token.decode('UTF-8')
+                                }),
+        mimetype='application/json')
+
+    # if password is wrong
+    return Response(
+        response=json_util.dumps({'success': False, 'msg': 'Wrong password!'}),
+        mimetype='application/json')
 
 @mod_api.route('/comparison', methods=['POST'])
 def comparison():
-    json_string = request.data
+    json_string = request.data  
 
     json_obj = json_util.loads(json_string)
     q1_id = json_obj['q1_id']

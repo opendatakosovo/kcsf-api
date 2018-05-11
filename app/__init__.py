@@ -4,10 +4,16 @@ import ConfigParser
 from logging.handlers import RotatingFileHandler
 from flask.ext.pymongo import PyMongo
 from flask.ext.cors import CORS
+from flask_bcrypt import Bcrypt
 from app.utils.mongo_utils import MongoUtils
+
+secret_key = 'AF168231D62E8B22765AFD6F3C3F7'
 
 # Create MongoDB database object.
 mongo = PyMongo()
+
+# Initialize bcrypt
+bcrypt = Bcrypt()
 
 #Initialize mongo access point
 mongo_utils = MongoUtils(mongo)
@@ -24,6 +30,9 @@ def create_app():
 
     # Configure logging.
     configure_logging(app)
+
+    # Initialize bcrypt
+    bcrypt.init_app(app)
 
     # Init modules
     init_modules(app)
