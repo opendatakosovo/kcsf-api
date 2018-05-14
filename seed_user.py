@@ -10,6 +10,8 @@ def run_seed():
     # so that we can use mongo configurations for the importer too.
     with app.app_context():
         # First user
+        firstName = 'KCSF'
+        lastName = 'Admin'
         email = "admin@kcsf.org"
         password = "password"
 
@@ -23,6 +25,8 @@ def run_seed():
 
         # Saving first user into db
         mongo.db.user.insert({
+            'firstName': firstName,
+            'lastName': lastName,
             'email': email,
             'password': hash_pwd
         })

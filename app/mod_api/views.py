@@ -34,6 +34,8 @@ def register():
 
     # Saving new user into db
     mongo.db.user.insert({
+        'firstName': data['firstName'],
+        'lastName': data['lastName'],
         'email': data['email'],
         'password': hash_pwd
     })
@@ -71,6 +73,20 @@ def authenticate():
         response=json_util.dumps({'success': False, 'msg': 'Wrong password!'}),
         mimetype='application/json')
 
+@mod_api.route('/profile', methods=['GET'])
+@token_required
+def profile(current_user):
+
+    user_data = {}
+    user_data['firstName'] = current_user['firstName']
+    user_data['lastName'] = current_user['lastName']
+    user_data['email'] = current_user['email']
+
+    return Response(
+        response=json_util.dumps(user_data),
+        mimetype='application/json'
+    )
+
 @mod_api.route('/comparison', methods=['POST'])
 def comparison():
     json_string = request.data  
@@ -87,7 +103,6 @@ def comparison():
         mimetype='application/json')
     return resp
 
-
 def get_aggregation(q1, q2, lang):
     array_questions = ["q7", "q22", "q77", "q109", "q128"]
 
@@ -101,12 +116,10 @@ def get_aggregation(q1, q2, lang):
         aggregation.insert(0, unwind)
     return aggregation
 
-
 def get_unwind(question, lang):
     return {
         "$unwind": "$" + question + ".answer." + lang
     }
-
 
 def build_aggregation_pipeline(q1, q2, lang):
     q1_answer = str(q1) + ".answer." + lang
