@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import jwt, datetime
 from flask import Blueprint, request, Response, render_template
 from bson import json_util
@@ -42,6 +45,32 @@ def register():
 
     return Response(
         response=json_util.dumps({'success': True, 'msg': 'User successfully saved!'}),
+        mimetype='application/json')
+
+@mod_api.route('/change-password', methods=['POST'])
+@token_required
+def change_password(current_user):
+    data = json_util.loads(request.data)
+
+    # Check if current password is not same
+    if not bcrypt.check_password_hash(current_user['password'], data['currentPassword']):
+        return Response(
+            response=json_util.dumps({'success': False, 'msg': u'Fjalëkalimi aktual nuk është i saktë!'}),
+            mimetype='application/json')
+    
+    # Check if new password is not same with confirm new password
+    if data['newPassword'] != data['newPasswordConfirm']:
+        return Response(
+            response=json_util.dumps({'success': False, 'msg': u'Fjalëkalimi i ri nuk përputhet me konfirmimin e tij!'}),
+            mimetype='application/json')
+
+    # Hashing new password
+    hash_new_pwd = bcrypt.generate_password_hash(data['newPassword'])
+
+    mongo.db.user.update({'_id': current_user['_id']}, {'$set': { 'password': hash_new_pwd } })
+
+    return Response(
+        response=json_util.dumps({'success': True, 'msg': u'Fjalëkalimi u ndryshua me sukses!'}),
         mimetype='application/json')
 
 @mod_api.route('/login', methods=['POST'])
