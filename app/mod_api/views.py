@@ -58,6 +58,12 @@ def change_password(current_user):
             response=json_util.dumps({'success': False, 'msg': u'Fjalëkalimi aktual nuk është i saktë!'}),
             mimetype='application/json')
     
+    # Check if new password is not longer than 6 chars
+    if len(data['newPassword']) < 6 :
+        return Response(
+            response=json_util.dumps({'success': False, 'msg': u'Fjalëkalimi i ri duhet të jetë më i madh se 6 karaktere!'}),
+            mimetype='application/json')
+
     # Check if new password is not same with confirm new password
     if data['newPassword'] != data['newPasswordConfirm']:
         return Response(
