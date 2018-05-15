@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import jwt, datetime
+import jwt, datetime, json
+from os.path import join, dirname, realpath, os
 from flask import Blueprint, request, Response, render_template
 from bson import json_util
 from app import mongo, bcrypt, secret_key
 from app.utils.auth import token_required
 
 mod_api = Blueprint('kcsf', __name__)
+
+UPLOAD_FOLDER = join(dirname(realpath(__file__)), "../../importer/data/")
 
 @mod_api.route('/', methods=['GET'])
 def index():
@@ -119,6 +122,39 @@ def profile(current_user):
 
     return Response(
         response=json_util.dumps(user_data),
+        mimetype='application/json'
+    )
+
+@mod_api.route('/import-data', methods=['POST'])
+@token_required
+def import_data(current_user):
+    year = request.form['year']
+
+    # Validation
+    if year == '' or not bool(request.files):
+        return Response(
+            response=json_util.dumps({'success': False, 'msg': 'Fajlli i të dhënave dhe viti duhet te zgjedhen!'}),
+            mimetype='application/json')
+    
+    # Getting the file
+    data_file = request.files['data-file']
+
+    # Year data directory
+    data_dir = UPLOAD_FOLDER + '/' + year
+
+    # Create year directory if not exists
+    if not os.path.exists(data_dir):
+        os.makedirs(data_dir)
+
+    if data_file.filename != '':
+        # Building new filename with extension from current filename of uploaded file        
+        data_filename = 'cso-data' + '.' + data_file.filename.split('.')[len(data_file.filename.split('.')) - 1]
+        # Saving uploaded file
+        data_file.save(os.path.join(data_dir, data_filename))
+
+    # Returning success response
+    return Response(
+        response=json_util.dumps({'success': True, 'msg': 'Fajlli i të dhënave u ngarkua me sukses!'}),
         mimetype='application/json'
     )
 

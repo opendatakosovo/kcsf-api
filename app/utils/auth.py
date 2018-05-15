@@ -24,7 +24,7 @@ def token_required(f):
             current_user = mongo.db.user.find_one({'email': data['email']})
         except:
             return Response(
-                        response=json_util.dumps({'success': False, 'msg': 'Token is invalid!!'}),
+                        response=json_util.dumps({'success': False, 'msg': 'Token is invalid!'}),
                         mimetype='application/json')
 
         return f(current_user, *args, **kwargs)
