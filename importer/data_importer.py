@@ -14,14 +14,17 @@ collection.remove({})
 
 
 class DataImporter(object):
-    def run(self):
+    def run(self, year):
         print "\n\tImporting data...\n"
-        questions = self.get_questions()
-        answers = self.get_answers()
-        self.get_data(questions, answers)
+        questions = self.get_questions(year)
+        answers = self.get_answers(year)
+        self.get_data(questions, answers, "" , year)
 
-    def get_data(self, questions, answers):
-        file_path = "importer/data/cso-data.csv"
+    def get_data(self, questions, answers, fileName, year):
+        if fileName != "":
+            file_path = filename
+        else:
+            file_path = "importer/data/cso-data.csv"
         with open(file_path, 'rb') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             header = reader.next()
@@ -80,7 +83,7 @@ class DataImporter(object):
                 json_data = self.build_json_doc(id, q2, q7, q9, q11, q14, q15, q18, q22, q23, q28, q36, q37, q48,
                                                 q51, q54, q56, q65, q72, q73, q74, q75, q76_1, q76_2, q77, q81,
                                                 q82, q84, q88, q104, q109, q112, q113, q118, q120, q121, q122,
-                                                q124, q126, q127, q128, q129, q136, q136_1, q138, q140)
+                                                q124, q126, q127, q128, q129, q136, q136_1, q138, q140, year)
                 collection.insert(json_data)
                 counter += 1
 
@@ -88,55 +91,57 @@ class DataImporter(object):
 
     def build_json_doc(self, id, q2, q7, q9, q11, q14, q15, q18, q22, q23, q28, q36, q37, q48, q51, q54,
                        q56, q65, q72, q73, q74, q75, q76_1, q76_2, q77, q81, q82, q84, q88, q104, q109,
-                       q112, q113, q118, q120, q121, q122, q124, q126, q127, q128, q129, q136, q136_1, q138, q140):
-        return {
-            "id": id,
-            "q2": q2,
-            "q7": q7,
-            "q9": q9,
-            "q11": q11,
-            "q14": q14,
-            "q15": q15,
-            "q18": q18,
-            "q22": q22,
-            "q23": q23,
-            "q28": q28,
-            "q36": q36,
-            "q37": q37,
-            "q48": q48,
-            "q51": q51,
-            "q54": q54,
-            "q56": q56,
-            "q65": q65,
-            "q72": q72,
-            "q73": q73,
-            "q74": q74,
-            "q75": q75,
-            "q76_1": q76_1,
-            "q76_2": q76_2,
-            "q77": q77,
-            "q81": q81,
-            "q82": q82,
-            "q84": q84,
-            "q88": q88,
-            "q104": q104,
-            "q109": q109,
-            "q112": q112,
-            "q113": q113,
-            "q118": q118,
-            "q120": q120,
-            "q121": q121,
-            "q122": q122,
-            "q124": q124,
-            "q126": q126,
-            "q127": q127,
-            "q128": q128,
-            "q129": q129,
-            "q136": q136,
-            "q136_1": q136_1,
-            "q138": q138,
-            "q140": q140
-        }
+                       q112, q113, q118, q120, q121, q122, q124, q126, q127, q128, q129, q136, q136_1, q138, q140, year):
+        json_obj = {
+                "year": year,
+                "id": id,
+                "q2": q2,
+                "q7": q7,
+                "q9": q9,
+                "q11": q11,
+                "q14": q14,
+                "q15": q15,
+                "q18": q18,
+                "q22": q22,
+                "q23": q23,
+                "q28": q28,
+                "q36": q36,
+                "q37": q37,
+                "q48": q48,
+                "q51": q51,
+                "q54": q54,
+                "q56": q56,
+                "q65": q65,
+                "q72": q72,
+                "q73": q73,
+                "q74": q74,
+                "q75": q75,
+                "q76_1": q76_1,
+                "q76_2": q76_2,
+                "q77": q77,
+                "q81": q81,
+                "q82": q82,
+                "q84": q84,
+                "q88": q88,
+                "q104": q104,
+                "q109": q109,
+                "q112": q112,
+                "q113": q113,
+                "q118": q118,
+                "q120": q120,
+                "q121": q121,
+                "q122": q122,
+                "q124": q124,
+                "q126": q126,
+                "q127": q127,
+                "q128": q128,
+                "q129": q129,
+                "q136": q136,
+                "q136_1": q136_1,
+                "q138": q138,
+                "q140": q140          
+            }
+        return json_obj
 
     def get_q2(self, row, questions):
         return self.build_regular_question(row, questions, "2", 1)
@@ -398,13 +403,13 @@ class DataImporter(object):
                 }
         return json_result
 
-    def get_questions(self):
+    def get_questions(self, year):
         # get question json
-        file_path = "importer/data/cso-questions.csv"
+        file_path = "importer/data/"+year+"/cso-questions.csv"
         questions = self.get_qa(file_path)
         return questions
 
-    def get_answers(self):
+    def get_answers(self, year):
         # get answers json
-        file_path = "importer/data/cso-answers.csv"
+        file_path = "importer/data/"+year+"/cso-answers.csv"
         return self.get_qa(file_path)

@@ -6,6 +6,7 @@ from flask.ext.pymongo import PyMongo
 from flask.ext.cors import CORS
 from flask_bcrypt import Bcrypt
 from app.utils.mongo_utils import MongoUtils
+from flask_mail import Mail
 
 secret_key = 'AF168231D62E8B22765AFD6F3C3F7'
 
@@ -15,6 +16,7 @@ mongo = PyMongo()
 # Initialize bcrypt
 bcrypt = Bcrypt()
 
+mail = Mail()
 #Initialize mongo access point
 mongo_utils = MongoUtils(mongo)
 
@@ -22,6 +24,20 @@ def create_app():
     # Here we  create flask instance
     app = Flask(__name__)
 
+    # Update config for Mail service
+    app.config.update(dict(
+        MAIL_SERVER = 'smtp.gmail.com',
+        MAIL_PORT = 587,
+        MAIL_USE_TLS = True,
+        MAIL_USE_SSL = False,
+        MAIL_DEFAULT_SENDER = 'kcsf.api@gmail.com',
+        MAIL_USERNAME = 'kcsf.api@gmail.com',
+        MAIL_PASSWORD = 'asjdlsakjdk23',
+    ))
+
+    # Configure mail 
+    mail.init_app(app)
+    
     # Allow cross-domain access to API.
     cors = CORS(app, resources={r"*": {"origins": "*"}})
 

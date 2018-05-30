@@ -6,6 +6,6 @@ ssh jenkins@46.101.135.45 <<EOF
  git pull
  rm -rf venv
  bash install.sh
- service apache2 restart
+ service nginx restart
  exit       
 EOF

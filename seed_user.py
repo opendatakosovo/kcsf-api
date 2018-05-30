@@ -12,8 +12,8 @@ def run_seed():
         # First user
         firstName = 'KCSF'
         lastName = 'Admin'
-        email = "admin@kcsf.org"
-        password = "password"
+        email = "nitihetemi@gmail.com"
+        password = "123456"
 
         # Check if email is already used
         if mongo.db.user.find({'email': email}).count() > 0:

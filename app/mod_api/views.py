@@ -5,10 +5,23 @@ import jwt, datetime, json
 from os.path import join, dirname, realpath, os
 from flask import Blueprint, request, Response, render_template
 from bson import json_util
-from app import mongo, bcrypt, secret_key
+from app import mongo, bcrypt, secret_key, mail
 from app.utils.auth import token_required
+from app.utils.file_utils import allowedFiles, getFileName
+from app.utils.mailer import sendResetPassword
+from importer.data_importer import DataImporter
+
+from datetime import timedelta
+from app.controllers.ResetPasswordController import resetPassword, preResetPassword
+
+
+import time
+
+# from mimetypes import MimeTypes
+# import urllib
 
 mod_api = Blueprint('kcsf', __name__)
+
 
 UPLOAD_FOLDER = join(dirname(realpath(__file__)), "../../importer/data/")
 
@@ -19,10 +32,17 @@ def index():
     '''
     return render_template('index.html')
 
+@mod_api.route('/reset_password/<string:code>', methods=['GET', 'POST'])
+def resetPass(code):
+   return resetPassword(code)
+
+@mod_api.route('/forgot_password', methods=['POST'])
+def forgotPassword():
+   return preResetPassword()
+
 @mod_api.route('/register', methods=['POST'])
 def register():
     data = json_util.loads(request.data)
-
     # Check if email is already used
     if mongo.db.user.find({'email': data['email']}).count() > 0:
         return Response(
@@ -92,7 +112,7 @@ def authenticate():
     # If user not found
     if not user:
         return Response(
-        response=json_util.dumps({'success': False, 'msg': 'Invalid email!'}),
+        response=json_util.dumps({'success': False, 'msg': 'Perdoruesi nuk ekziston!'}),
         mimetype='application/json')
 
     # Checking password
@@ -108,7 +128,7 @@ def authenticate():
 
     # if password is wrong
     return Response(
-        response=json_util.dumps({'success': False, 'msg': 'Wrong password!'}),
+        response=json_util.dumps({'success': False, 'msg': 'Fjalëkalimi nuk eshte i sakte!'}),
         mimetype='application/json')
 
 @mod_api.route('/profile', methods=['GET'])
@@ -138,6 +158,18 @@ def import_data(current_user):
     
     # Getting the file
     data_file = request.files['data-file']
+    answers_file = request.files['answers-file']
+    questions_file = request.files['questions-file']
+    
+    # Get file mimetype 
+    data_mime = data_file.mimetype
+    question_mime = questions_file.mimetype
+    answer_mime = questions_file.mimetype
+
+    if (data_mime not in allowedFiles()) or (question_mime not in allowedFiles()) or (answer_mime not in allowedFiles()):
+        return Response(
+            response=json_util.dumps({'success': False, 'msg': 'Fajlli i të dhënave duhet te jete i tipit csv!'}),
+            mimetype='application/json')
 
     # Year data directory
     data_dir = UPLOAD_FOLDER + '/' + year
@@ -149,9 +181,13 @@ def import_data(current_user):
     if data_file.filename != '':
         # Building new filename with extension from current filename of uploaded file        
         data_filename = 'cso-data' + '.' + data_file.filename.split('.')[len(data_file.filename.split('.')) - 1]
+
         # Saving uploaded file
         data_file.save(os.path.join(data_dir, data_filename))
-
+        
+    getFileName(questions_file, "questions", data_dir)
+    getFileName(answers_file, "answers", data_dir)
+    DataImporter().run(year)
     # Returning success response
     return Response(
         response=json_util.dumps({'success': True, 'msg': 'Fajlli i të dhënave u ngarkua me sukses!'}),
@@ -160,24 +196,24 @@ def import_data(current_user):
 
 @mod_api.route('/comparison', methods=['POST'])
 def comparison():
-    json_string = request.data  
-
+    json_string = request.data
     json_obj = json_util.loads(json_string)
     q1_id = json_obj['q1_id']
     q2_id = json_obj['q2_id']
     lang = json_obj['lang']
+    year = str(json_obj['year'])
 
-    aggregation = get_aggregation(q1_id, q2_id, lang)
+    aggregation = get_aggregation(q1_id, q2_id, lang, year)
     result = mongo.db.cso_survey.aggregate(aggregation)
     resp = Response(
         response=json_util.dumps(result['result']),
         mimetype='application/json')
     return resp
 
-def get_aggregation(q1, q2, lang):
+def get_aggregation(q1, q2, lang, year):
     array_questions = ["q7", "q22", "q77", "q109", "q128"]
 
-    aggregation = build_aggregation_pipeline(q1, q2, lang)
+    aggregation = build_aggregation_pipeline(q1, q2, lang, year)
 
     if q2 in array_questions:
         unwind = get_unwind(q2, lang)
@@ -192,14 +228,17 @@ def get_unwind(question, lang):
         "$unwind": "$" + question + ".answer." + lang
     }
 
-def build_aggregation_pipeline(q1, q2, lang):
+def build_aggregation_pipeline(q1, q2, lang, year):
+    year = year
     q1_answer = str(q1) + ".answer." + lang
     q2_answer = str(q2) + ".answer." + lang
     match = {
         "$match": {
             q1_answer: {
                 "$nin": ["", None]
-            }
+            },
+            "year": year
+
         }
     }
     group = {

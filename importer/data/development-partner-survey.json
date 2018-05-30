@@ -1,99 +1,95 @@
 {
-  "q35": {
-    "question": "In your opinion, the general social, political and economical environment in Kosovo:",
-    "answer": {
-      "Inhibits the development of civil society": "13.3%",
-      "Does not inhibit nor stimulate the development of civil society": "80.0%",
-      "Stimulates the development of civil society": "6.7%"
+    "q35": {
+        "question": "In your opinion, the general social, political and economical environment in Kosovo:",
+        "answer": {
+            "Inhibits the development of civil society": "13.3%",
+            "Does not inhibit nor stimulate the development of civil society": "80.0%",
+            "Stimulates the development of civil society": "6.7%"
+        }
+    },
+    "q29": {
+        "question": "How do you evaluate the capacities of CSOs in Kosovo for the following? (Please select the level for each area)",
+        "answer": {
+            "strategic planning": {
+                "High": "18.8%",
+                "Medium": "43.8%",
+                "Low": "37.5%"
+            },
+            "Writing project-proposals": {
+                "High": "12.5%",
+                "Medium": "68.8%",
+                "Low": "18.8%"
+            },
+            "Applying for funds": {
+                "High": "12.5%",
+                "Medium": "75.0%",
+                "Low": "12.5%"
+            },
+            "Implementation/operational management of projects": {
+                "High": "37.5%",
+                "Medium": "50.0%",
+                "Low": "12.5%"
+            },
+            "Financial management of projects": {
+                "High": "31.3%",
+                "Medium": "56.3%",
+                "Low": "12.5%"
+            },
+            "Reporting on implementation of project activities": {
+                "High": "18.8%",
+                "Medium": "68.8%",
+                "Low": "12.5%"
+            },
+            "Knowledge/expertise in the thematic fields of the CSO": {
+                "High": "56.3%",
+                "Medium": "37.5%",
+                "Low": "6.3%"
+            }
+        }
+    },
+    "q31": {
+        "question": "What do you think are the 3 main skills and 3 main shortcomings of employees working in civil society organizations in Kosovo?",
+        "answer": {
+            "Skill 1": [
+                "very good knowledge in the relevant field",
+                "n/a",
+                "?",
+                "IT skills",
+                "fairly good writing",
+                "Quick learners",
+                "Internationalisation",
+                "communication",
+                "Networking ability",
+                "expertise",
+                "Experience",
+                "can not say",
+                "Ability to orally present their plans",
+                "Practical skills",
+                "communication",
+                "management"
+            ],
+            "Skill 2": [
+                "strong grassroots support",
+                "n/a",
+                "?",
+                "Knowledge of english language",
+                "analytical skills above average in many cases",
+                "Creative",
+                "project management",
+                "advocacy",
+                "Agility",
+                "quality work in the field",
+                "Qualifications",
+                "can not say",
+                " ",
+                "Advocacy",
+                "operational skills",
+                "communication"
+            ],
+            "Skill 3": {},
+            "Shortcoming 1": {},
+            "Shortcoming 2": {},
+            "Shortcoming 3": {}
+        }
     }
-  },
-  "q29": {
-    "question": "How do you evaluate the capacities of CSOs in Kosovo for the following? (Please select the level for each area)",
-    "answer": {
-      "strategic planning": {
-        "High": "18.8%",
-        "Medium": "43.8%",
-        "Low": "37.5%"
-      },
-      "Writing project-proposals": {
-        "High": "12.5%",
-        "Medium": "68.8%",
-        "Low": "18.8%"
-      },
-      "Applying for funds": {
-        "High": "12.5%",
-        "Medium": "75.0%",
-        "Low": "12.5%"
-      },
-      "Implementation/operational management of projects": {
-        "High": "37.5%",
-        "Medium": "50.0%",
-        "Low": "12.5%"
-      },
-      "Financial management of projects": {
-        "High": "31.3%",
-        "Medium": "56.3%",
-        "Low": "12.5%"
-      },
-      "Reporting on implementation of project activities": {
-        "High": "18.8%",
-        "Medium": "68.8%",
-        "Low": "12.5%"
-      },
-      "Knowledge/expertise in the thematic fields of the CSO": {
-        "High": "56.3%",
-        "Medium": "37.5%",
-        "Low": "6.3%"
-      }
-    }
-  },
-  "q31": {
-    "question": "What do you think are the 3 main skills and 3 main shortcomings of employees working in civil society organizations in Kosovo?",
-    "answer": {
-      "Skill 1": [
-        "very good knowledge in the relevant field",
-        "n/a",
-        "?",
-        "IT skills",
-        "fairly good writing",
-        "Quick learners",
-        "Internationalisation",
-        "communication",
-        "Networking ability",
-        "expertise",
-        "Experience",
-        "can not say",
-        "Ability to orally present their plans",
-        "Practical skills",
-        "communication",
-        "management"
-      ],
-      "Skill 2": [
-        "strong grassroots support",
-        "n/a",
-        "?",
-        "Knowledge of english language",
-        "analytical skills above average in many cases",
-        "Creative",
-        "project management",
-        "advocacy",
-        "Agility",
-        "quality work in the field",
-        "Qualifications",
-        "can not say",
-        " ",
-        "Advocacy",
-        "operational skills",
-        "communication"
-      ],
-      "Skill 3": {
-      },
-      "Shortcoming 1": {
-      },
-      "Shortcoming 2": {
-      },
-      "Shortcoming 3": {
-      }
-    }
-  }
 }
