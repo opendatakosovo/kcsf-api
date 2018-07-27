@@ -24,7 +24,7 @@ class DataImporter(object):
         if fileName != "":
             file_path = filename
         else:
-            file_path = "importer/data/cso-data.csv"
+            file_path = "importer/data/"+ year+"/cso-data.csv"
         with open(file_path, 'rb') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             header = reader.next()
