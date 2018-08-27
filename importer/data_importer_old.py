@@ -10,10 +10,12 @@ mongo = MongoClient()
 db = mongo.kcsf
 
 collection = db.cso_survey
+#collection.remove({})
+
 
 class DataImporter(object):
     def run(self, year):
-        print "\n\tImporting data...\n"
+        print "\n\tImporting data for year: %s ...\n" % year
         questions = self.get_questions(year)
         answers = self.get_answers(year)
         self.get_data(questions, answers, "" , year)
