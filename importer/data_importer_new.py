@@ -307,22 +307,22 @@ class DataImporter(object):
         return self.build_array_questions(header, row, questions, answers, 97, "113", 1, 4)
 
     def get_q114(self, row, questions, answers):
-        return self.build_questions_json(row[102], "114", questions, answers)
+        return self.build_questions_json(row[101], "114", questions, answers)
 
     def get_q119(self, header, row, questions, answers):
-         return self.build_array_questions_with_different_answers(header, row, questions, answers, 103, "119", 0, 3)
+         return self.build_array_questions_with_different_answers(header, row, questions, answers, 102, "119", 0, 3)
 
     def get_q120(self, row, questions):
-        return self.build_regular_question(row, questions, "120", 106)
+        return self.build_regular_question(row, questions, "120", 105)
 
     def get_q121(self, row, questions, answers):
-        return self.build_questions_json(row[107], "121", questions, answers)
+        return self.build_questions_json(row[106], "121", questions, answers)
 
     def get_q124(self, row, questions, answers):
-        return self.build_questions_json(row[108], "124", questions, answers)
+        return self.build_questions_json(row[107], "124", questions, answers)
 
     def get_q126(self, row, questions, answers):
-        return self.build_questions_json(row[109], "126", questions, answers)
+        return self.build_questions_json(row[108], "126", questions, answers)
 
     def build_regular_question(self, row, questions, id, index):
         return {
