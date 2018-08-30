@@ -242,7 +242,7 @@ class DataImporter(object):
         return self.build_questions_json(row[74], "68", questions, answers)
 
     def get_q69(self, header, row, questions, answers):
-        return self.build_array_questions(header, row, questions, answers, 75, "69", 1, 6)
+        return self.build_array_questions_with_different_answers(header, row, questions, answers, 75, "69", 0, 5)
 
     def get_q74(self, row, questions, answers):
         return self.build_questions_json(row[80], "74", questions, answers)
