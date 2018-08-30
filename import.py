@@ -1,5 +1,5 @@
 from app import create_app
-from importer.data_importer_old import DataImporter
+from importer.data_importer_new import DataImporter
 
 # instantiate app instance so that we can load mongo configurations
 # and use them in the importer implementation
