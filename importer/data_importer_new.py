@@ -249,20 +249,8 @@ class DataImporter(object):
     def get_q68(self, row, questions, answers):
         return self.build_questions_json(row[74], "68", questions, answers)
 
-    def get_q69_1(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 75) 
-
-    def get_q69_2(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 76) 
-
-    def get_q69_3(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 77)      
-
-    def get_q69_4(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 78)
-
-    def get_q69_5(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 79)  
+    def get_q69(self, row, questions):
+        return self.build_array_questions(header, row, questions, answers, 75, "79", 1, 5)
 
     def get_q74(self, row, questions, answers):
         return self.build_questions_json(row[80], "74", questions, answers)
