@@ -357,7 +357,6 @@ class DataImporter(object):
                     col_id = header[i + index][:5].strip()
                     if col_id[-1] == ".":
                         col_id = col_id[:-1]
-                    print  "%s.1." % col_id
                     question_json['answer']['en'].append(answers[col_id + ".1."]['en'])
                     question_json['answer']['sq'].append(answers[col_id + ".1."]['sq'])
                     question_json['answer']['sr'].append(answers[col_id + ".1."]['sr'])
