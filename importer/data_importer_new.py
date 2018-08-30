@@ -304,7 +304,7 @@ class DataImporter(object):
         return self.build_questions_json(row[96], "112", questions, answers)
 
     def get_q113(self, header, row, questions, answers):
-        return self.build_array_questions(header, row, questions, answers, 97, "113", 1, 5)
+        return self.build_array_questions(header, row, questions, answers, 97, "113", 0, 4)
 
     def get_q114(self, row, questions, answers):
         return self.build_questions_json(row[101], "114", questions, answers)
@@ -357,6 +357,7 @@ class DataImporter(object):
                     col_id = header[i + index][:5].strip()
                     if col_id[-1] == ".":
                         col_id = col_id[:-1]
+                    print  "%s.1." % col_id
                     question_json['answer']['en'].append(answers[col_id + ".1."]['en'])
                     question_json['answer']['sq'].append(answers[col_id + ".1."]['sq'])
                     question_json['answer']['sr'].append(answers[col_id + ".1."]['sr'])
