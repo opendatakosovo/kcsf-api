@@ -123,11 +123,11 @@
 68.2.,Nuk kanë ndryshuar,Nisu se promenili,Have not changed
 68.3.,Janë zvogëluar,Smanjili su se,Decreased
 68.99.,Nuk aplikohet,Ne primenjuju se,Does not apply
-69.1,Grante për projekte,Grantove za projekte,Grants for projects
-69.2,Grante institucionale,Institucionalne grantove,Institutional grants
-69.3,Kontrata për shërbime,Ugovor za pružanje usluga,Service contracts
-69.4,Asistencë teknike,Tehničku pomoć,Technical assistance
-69.5,Tjetër,Ostalo,Other
+69.1.1.,Grante për projekte,Grantove za projekte,Grants for projects
+69.2.1.,Grante institucionale,Institucionalne grantove,Institutional grants
+69.3.1.,Kontrata për shërbime,Ugovor za pružanje usluga,Service contracts
+69.4.1.,Asistencë teknike,Tehničku pomoć,Technical assistance
+69.5.1.,Tjetër,Ostalo,Other
 74.1.,Po,Da,Yes
 74.2.,"Jo, sepse nuk kemi aplikuar ","Ne, jer nismo podneli zahtev  ","No, because we have not applied "
 74.3.,"Jo, edhe pse kemi aplikuar ","Ne, iako smo podneli zahtev  ","No, although we have applied "
