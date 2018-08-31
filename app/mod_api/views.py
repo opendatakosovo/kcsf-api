@@ -211,7 +211,7 @@ def comparison():
     return resp
 
 def get_aggregation(q1, q2, lang, year):
-    array_questions = ["q7", "q22", "q77", "q109", "q128"]
+    array_questions = ["q7","q69", "q22", "q77", "q109", "q113", "q128"]
 
     aggregation = build_aggregation_pipeline(q1, q2, lang, year)
 
