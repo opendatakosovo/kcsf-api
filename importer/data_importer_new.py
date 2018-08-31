@@ -251,7 +251,7 @@ class DataImporter(object):
         return self.build_questions_json(row[81], "78", questions, answers)
 
     def get_q94(self, header, row, questions, answers):
-        return self.build_array_questions(header, row, questions, answers, 82, "94", 1, 4)
+        return self.build_array_questions(header, row, questions, answers, 82, "94", 0, 3)
 
     def get_q96(self, row, questions, answers):
         return self.build_questions_json(row[85], "96", questions, answers)
