@@ -58,11 +58,7 @@ class DataImporter(object):
                 q66 = self.get_q66(row, questions)
                 q67 = self.get_q67(row, questions, answers)
                 q68 = self.get_q68(row, questions, answers)
-                q69_1 = self.get_q69_1(row, questions)
-                q69_2 = self.get_q69_2(row, questions)
-                q69_3 = self.get_q69_3(row, questions)
-                q69_4 = self.get_q69_4(row, questions)
-                q69_5 = self.get_q69_5(row, questions)
+                q69 = self.get_q69(header, row, questions, answers)
                 q74 = self.get_q74(row, questions, answers)
                 q78 = self.get_q78(row, questions, answers)
                 q94 = self.get_q94(header, row, questions, answers)
@@ -84,7 +80,7 @@ class DataImporter(object):
                 q124 = self.get_q124(row, questions, answers)
                 q126 = self.get_q126(row, questions, answers)
                 json_data = self.build_json_doc(id, q2, q7, q9, q11, q14, q15, q18, q22, q23, q26, q32, q33, q34, q43, q45, q48,
-                       q50, q58, q64, q65, q66, q67, q68, q69_1, q69_2, q69_3, q69_4, q69_5, q74, q78, q94,
+                       q50, q58, q64, q65, q66, q67, q68, q69, q74, q78, q94,
                        q96, q97, q102, q103, q104, q105, q106, q108, q111, q112, q113, q114, q119, q120, q121, q124, q126, year)
                 collection.insert(json_data)
                 counter += 1
@@ -92,7 +88,7 @@ class DataImporter(object):
             print "\n\tDone. Imported %i documents.\n" % counter
 
     def build_json_doc(self, id, q2, q7, q9, q11, q14, q15, q18, q22, q23, q26,q32, q33, q34, q43, q45, q48,
-                       q50, q58, q64, q65, q66, q67, q68, q69_1, q69_2, q69_3, q69_4, q69_5, q74, q78, q94,
+                       q50, q58, q64, q65, q66, q67, q68, q69, q74, q78, q94,
                        q96, q97, q102, q103, q104, q105, q106, q108, q111, q112, q113, q114, q119, q120, q121, q124, q126, year):
         json_obj = {
                 "year": year,
@@ -120,11 +116,7 @@ class DataImporter(object):
                 "q66": q66,
                 "q67": q67,
                 "q68": q68,
-                "q69_1": q69_1,
-                "q69_2": q69_2,
-                "q69_3": q69_3,
-                "q69_4": q69_4,
-                "q69_5": q69_5,
+                "q69": q69,
                 "q74": q74,
                 "q78": q78,
                 "q94": q94,
@@ -249,20 +241,8 @@ class DataImporter(object):
     def get_q68(self, row, questions, answers):
         return self.build_questions_json(row[74], "68", questions, answers)
 
-    def get_q69_1(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 75) 
-
-    def get_q69_2(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 76) 
-
-    def get_q69_3(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 77)      
-
-    def get_q69_4(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 78)
-
-    def get_q69_5(self, row, questions):
-         return self.build_regular_question(row, questions, "69", 79)  
+    def get_q69(self, header, row, questions, answers):
+        return self.build_array_questions(header, row, questions, answers, 75, "69", 1, 5) 
 
     def get_q74(self, row, questions, answers):
         return self.build_questions_json(row[80], "74", questions, answers)
