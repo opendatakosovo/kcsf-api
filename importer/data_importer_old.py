@@ -13,7 +13,7 @@ collection = db.cso_survey
 #collection.remove({})
 
 
-class DataImporter(object):
+class DataImporterOld(object):
     def run(self, year):
         print "\n\tImporting data for year: %s ...\n" % year
         questions = self.get_questions(year)

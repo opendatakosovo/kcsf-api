@@ -13,7 +13,7 @@ collection = db.cso_survey
 
 
 
-class DataImporter(object):
+class DataImporterNew(object):
     def run(self, year):
         print "\n\tImporting data for year: %s ...\n" % year 
         questions = self.get_questions(year)
@@ -182,7 +182,7 @@ class DataImporter(object):
         return self.build_questions_json(row[47], "18", questions, answers)
 
     def get_q22(self, header, row, questions, answers):
-        return self.build_array_questions(header, row, questions, answers, 48, "22", 1, 7)
+        return self.build_array_questions(header, row, questions, answers, 48, "22", 0, 6)
 
     def get_q23(self, row, questions, answers):
         return self.build_questions_json(row[54], "23", questions, answers)
@@ -242,7 +242,7 @@ class DataImporter(object):
         return self.build_questions_json(row[74], "68", questions, answers)
 
     def get_q69(self, header, row, questions, answers):
-        return self.build_array_questions(header, row, questions, answers, 75, "69", 1, 5) 
+        return self.build_array_questions(header, row, questions, answers, 75, "69", 0, 5) 
 
     def get_q74(self, row, questions, answers):
         return self.build_questions_json(row[80], "74", questions, answers)

@@ -9,7 +9,8 @@ from app import mongo, bcrypt, secret_key, mail
 from app.utils.auth import token_required
 from app.utils.file_utils import allowedFiles, getFileName
 from app.utils.mailer import sendResetPassword
-from importer.data_importer import DataImporter
+from importer.data_importer_new import DataImporterNew
+from importer.data_importer_old import DataImporterOld
 
 from datetime import timedelta
 from app.controllers.ResetPasswordController import resetPassword, preResetPassword
@@ -149,7 +150,7 @@ def profile(current_user):
 @token_required
 def import_data(current_user):
     year = request.form['year']
-
+    updated = False
     # Validation
     if year == '' or not bool(request.files):
         return Response(
@@ -173,7 +174,6 @@ def import_data(current_user):
 
     # Year data directory
     data_dir = UPLOAD_FOLDER + '/' + year
-
     # Create year directory if not exists
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
@@ -184,10 +184,22 @@ def import_data(current_user):
 
         # Saving uploaded file
         data_file.save(os.path.join(data_dir, data_filename))
+
+    dataset = mongo.db.datasets.find_one({"year":year})
+    if dataset:
+        mongo.db.datasets.update({"year":year},{"$set":{"updatedAt":datetime.datetime.now()}})
+        updated = True
+    else:
+        mongo.db.datasets.insert({"year":year,"createdAt":datetime.datetime.now(),"updatedAt":datetime.datetime.now()})
         
     getFileName(questions_file, "questions", data_dir)
     getFileName(answers_file, "answers", data_dir)
-    DataImporter().run(year)
+    splitedYearRange = year.split("-")
+    if(int(splitedYearRange[0]) == 2015 and int(splitedYearRange[1]) == 2016):
+        DataImporterOld().run(year)
+    else:
+        DataImporterNew().run(year)
+
     # Returning success response
     return Response(
         response=json_util.dumps({'success': True, 'msg': 'Fajlli i të dhënave u ngarkua me sukses!'}),
@@ -214,7 +226,7 @@ def get_aggregation(q1, q2, lang, year):
     if(year == "2015-2016"):
         array_questions = ["q7", "q22", "q77", "q109", "q128"]
     elif (year == "2017-2018"):
-        array_questions = ["q7", "q22", "q69", "q94", "q113"]
+        array_questions = ["q7", "q22", "q32", "q69", "q94", "q113"]
     
 
     aggregation = build_aggregation_pipeline(q1, q2, lang, year)
