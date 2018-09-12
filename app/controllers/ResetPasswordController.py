@@ -1,19 +1,25 @@
 # coding=utf-8
 
 from bson import json_util
+import json
 from app import mongo, bcrypt, mail
 from flask import request, Response
 import datetime
+
 from datetime import timedelta
 import random
 import string
 from app.utils.mailer import sendResetPassword
 
 def resetPassword(code):
+    print request.method
+
     if request.method == 'POST':
+
+        print "post"
         
         data       = json_util.loads(request.data)
-        reset_data = mongo.db.reset_passwords.find_one({'code': code, 'used': 0})
+        reset_data = mongo.db.reset_passwords.find_one({'code': code})
 
     	if reset_data == None:
             return Response(
@@ -34,7 +40,7 @@ def resetPassword(code):
 
             # Update password and "used" field in reset_password
             mongo.db.user.update({'_id': reset_data['user_id']}, {'$set': { 'password': hash_new_pwd } })
-            mongo.db.reset_passwords.update({'_id': reset_data['_id']}, {'$set': { 'used': 1 } })
+            mongo.db.reset_passwords.remove({'_id': reset_data['_id']})
 
             return Response(
                 response=json_util.dumps({'success': True, 'msg': u'Fjalëkalimi u ndryshua me sukses!'}),
@@ -45,18 +51,27 @@ def resetPassword(code):
                 mimetype='application/json')
 
     elif request.method == 'GET':
-        
-        expires  = datetime.datetime.now() + timedelta(days=1)
-        date_now = datetime.datetime.now()
 
-        if expires <= date_now:
-            return Response(
-            response=json_util.dumps({'success': False, 'msg': 'Jo valid!'}),
-            mimetype='application/json')
-        elif expires > date_now:
-            return Response(
-            response=json_util.dumps({'success': True, 'msg': 'Duke ndërruar fjalëkalimin!'}),
-            mimetype='application/json')
+        print "GET"
+       
+        reset_data = mongo.db.reset_passwords.find_one({'code': code})
+        if reset_data :
+            date_now = datetime.datetime.now()
+            my_date = reset_data.get("expires_after")
+            my_date = my_date.replace(tzinfo=None)
+            if my_date <= date_now:
+                return Response(
+                    response=json_util.dumps({'success': False, 'msg': 'Ka skaduar tokeni'}),
+                    mimetype='application/json')
+            elif my_date > date_now:
+                return Response(
+                    response=json_util.dumps({'success': True, 'msg': 'Duke ndërruar fjalëkalimin!'}),
+                    mimetype='application/json')
+        else:
+                return Response(
+                    response=json_util.dumps({'success': False, 'msg': 'Tokeni jo valid'}),
+                    mimetype='application/json')
+
     return 'true'
 
 
@@ -84,7 +99,6 @@ def preResetPassword():
             'code': code,
             'created_at': datetime.datetime.now(),
             'expires_after': expires,
-            'used': 0
             })
 
         msg = sendResetPassword(user, request, code)
@@ -93,4 +107,6 @@ def preResetPassword():
             response=json_util.dumps({'success': True, 'msg': u'Kërkesa u dergua me sukses!'}),
             mimetype='application/json')
     except Exception as e:
-        raise  e
+        return Response(
+            response=json_util.dumps({'success': False, 'msg': e.message}),
+            mimetype='application/json')

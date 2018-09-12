@@ -196,9 +196,21 @@ def import_data(current_user):
     getFileName(answers_file, "answers", data_dir)
     splitedYearRange = year.split("-")
     if(int(splitedYearRange[0]) == 2015 and int(splitedYearRange[1]) == 2016):
-        DataImporterOld().run(year)
+        try:
+            DataImporterOld().run(year)
+        except KeyError as msg:
+           return Response(
+                response=json_util.dumps({'success': False, 'msg': "Dataseti nuk është ngarkuar, gabimi është në këtë pytje %s" % (msg.message)}),
+                mimetype='application/json'
+             )
     else:
-        DataImporterNew().run(year)
+        try:
+            DataImporterNew().run(year)
+        except KeyError as msg:
+             return Response(
+                response=json_util.dumps({'success': False, 'msg': "Dataseti nuk është ngarkuar, gabimi është në këtë pytje %s" % (msg.message)}),
+                mimetype='application/json'
+             )
 
     # Returning success response
     return Response(
