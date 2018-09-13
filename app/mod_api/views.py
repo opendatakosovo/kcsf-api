@@ -113,7 +113,7 @@ def authenticate():
     # If user not found
     if not user:
         return Response(
-        response=json_util.dumps({'success': False, 'msg': 'Perdoruesi nuk ekziston!'}),
+        response=json_util.dumps({'success': False, 'msg': 'Përdoruesi nuk ekziston!'}),
         mimetype='application/json')
 
     # Checking password
@@ -129,7 +129,7 @@ def authenticate():
 
     # if password is wrong
     return Response(
-        response=json_util.dumps({'success': False, 'msg': 'Fjalëkalimi nuk eshte i sakte!'}),
+        response=json_util.dumps({'success': False, 'msg': 'Fjalëkalimi nuk është i saktë!'}),
         mimetype='application/json')
 
 @mod_api.route('/profile', methods=['GET'])
