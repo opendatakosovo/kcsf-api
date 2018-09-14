@@ -12,7 +12,7 @@ def run_seed():
         # First user
         firstName = 'KCSF'
         lastName = 'Admin'
-        email = "florinna661@gmail.com"
+        email = "admin@kcsf.org"
         password = "superkcsf"
 
         # Check if email is already used
